@@ -15,6 +15,14 @@ pipeline {
                   '''
             }
         }
+        stage('ENV_FILE_MV') {
+            steps {
+                sh '''
+                  #!/bin/sh
+                  /var/jenkins_home/workspace/demoFlutter/lib/env_file_dev.dart /var/jenkins_home/workspace/demoFlutter/lib/env_file.dart
+                  '''
+            }
+        }
         stage('BUILD') {
             steps {
                 sh '''

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:adult_demo/Image_view_page.dart';
+import 'package:adult_demo/env_file.dart' as e;
+
+
 
 void main() {
   runApp(MyApp());
@@ -218,11 +221,11 @@ class RandomWordsState extends State<RandomWords> {
                   child: GestureDetector(
                           child: Container(
                             width: 90,
-                            child: Image.network("http://localhost:8090/ACTOR_IDX_PF_IMG/LS/"+pair["ACTOR_IDX"].toString(),height: 60),                            
+                            child: Image.network("http://"+e.env_file.fileServer+"/ACTOR_IDX_PF_IMG/LS/"+pair["ACTOR_IDX"].toString(),height: 60),                            
                             ),                          
                           onTap: () {
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => ImageViewPage(path:"http://localhost:8090/ACTOR_IDX_PF_IMG/L/"+pair["ACTOR_IDX"].toString()))
+                                MaterialPageRoute(builder: (context) => ImageViewPage(path:"http://"+e.env_file.fileServer+"/ACTOR_IDX_PF_IMG/L/"+pair["ACTOR_IDX"].toString()))
                             );
                           },
                         ),
@@ -295,8 +298,11 @@ class RandomWords extends StatefulWidget {
 Future<List> BR_MIG_AV_ACTR_FIND() async { 
     //var jsonString='{"brRq":"IN_DATA,PAGE_DATA","PAGE_DATA":{"PAGE_NUM":0,"PAGE_SIZE":300},"brRs":"OUT_DATA","IN_DATA":[{"SEARCH_NM":"코니시 유우"}] }';
     var jsonString='{"brRq":"IN_DATA,PAGE_DATA","PAGE_DATA":{"PAGE_NUM":0,"PAGE_SIZE":6000},"brRs":"OUT_DATA","IN_DATA":[{}] }';
+    
     http.Response response = await http.post(
-       Uri.parse('http://127.0.0.1:8091/api/BR_MIG_AV_ACTR_FIND')
+
+
+       Uri.parse('http://'+e.env_file.apiServer+'/api/BR_MIG_AV_ACTR_FIND')
        , headers: {"content-type": "application/json"}
        , body : jsonString
        ); 
