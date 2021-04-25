@@ -1,5 +1,5 @@
 class env_file {
-  static String apiServer="demoJpa:8091"; 
-  static String fileServer="demoWeb:8090"; 
+  static String apiServer="api.st.com"; 
+  static String fileServer="file.st.com"; 
 
 }
